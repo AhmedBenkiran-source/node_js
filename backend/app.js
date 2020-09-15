@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const stuffRoutes = require('./routes/stuff');
 const userRoutes = require('./routes/user');
+const path = require('path');
 
 mongoose.connect('mongodb+srv://root:root@cluster0.4rgtu.mongodb.net/test?retryWrites=true&w=majority',
     { useNewUrlParser: true,
@@ -22,6 +23,6 @@ app.use(bodyParser.json());
 
 app.use('/api/stuff', stuffRoutes);
 app.use('/api/auth', userRoutes);
-
+app.use('/images', express.static(path.join(__dirname, 'images')));
 module.exports = app;
 //https://cdn.pixabay.com/photo/2019/06/11/18/56/camera-4267692_1280.jpg
